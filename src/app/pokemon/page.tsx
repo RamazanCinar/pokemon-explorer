@@ -30,6 +30,18 @@ interface PokemonAPIResponse {
 export default function Home() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [search, setSearch] = useState("");
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  useEffect(() => {
+    const storedFavorites = localStorage.getItem("favorites");
+    if (storedFavorites) {
+      setFavorites(JSON.parse(storedFavorites));
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem("favorites", JSON.stringify(favorites));
+  }, [favorites]);
 
   useEffect(() => {
     const fetchPokemons = async () => {
@@ -84,6 +96,12 @@ export default function Home() {
     fetchPokemons();
   }, []);
 
+  const toggleFavorite = (id: number) => {
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
+    );
+  };
+
   const filteredPokemons = pokemons.filter(
     (pokemon) =>
       pokemon.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -108,6 +126,8 @@ export default function Home() {
             name={pokemon.name}
             image={pokemon.image}
             type={pokemon.types.join(" ")}
+            isFavorite={favorites.includes(pokemon.id)}
+            toggleFavorite={() => toggleFavorite(pokemon.id)}
           />
         ))}
       </div>
