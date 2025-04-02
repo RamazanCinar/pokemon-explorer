@@ -30,7 +30,7 @@ interface PokemonAPIResponse {
 export default function Home() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
   const [search, setSearch] = useState("");
-  const [favorites, setFavorites] = useState<number[]>([]);
+  const [favorites, setFavorites] = useState<Pokemon[]>([]);
 
   useEffect(() => {
     const storedFavorites = localStorage.getItem("favorites");
@@ -96,10 +96,18 @@ export default function Home() {
     fetchPokemons();
   }, []);
 
-  const toggleFavorite = (id: number) => {
-    setFavorites((prev) =>
-      prev.includes(id) ? prev.filter((favId) => favId !== id) : [...prev, id]
-    );
+  const toggleFavorite = (pokemon: Pokemon) => {
+    setFavorites((prev) => {
+      const isFav = prev.some((fav) => fav.id === pokemon.id);
+      let updatedFavorites;
+      if (isFav) {
+        updatedFavorites = prev.filter((fav) => fav.id !== pokemon.id);
+      } else {
+        updatedFavorites = [...prev, pokemon];
+      }
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      return updatedFavorites;
+    });
   };
 
   const filteredPokemons = pokemons.filter(
@@ -126,8 +134,8 @@ export default function Home() {
             name={pokemon.name}
             image={pokemon.image}
             type={pokemon.types.join(" ")}
-            isFavorite={favorites.includes(pokemon.id)}
-            toggleFavorite={() => toggleFavorite(pokemon.id)}
+            isFavorite={favorites.some((fav) => fav.id === pokemon.id)}
+            toggleFavorite={() => toggleFavorite(pokemon)}
           />
         ))}
       </div>
