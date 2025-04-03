@@ -17,21 +17,21 @@ A Next.js project using Tailwind CSS, Storybook, and Playwright to showcase Pok√
    cd pokemon-explorer
    ```
 2. Insall dependencies:
-3. ```
+ ```bash
    npm install
    ```
 
-   ##Running the project
+   ## Running the project
    Start the Next.js development server on http://localhost:3000:
    ```bash
    npm run dev
    ```
-   ##Running Storybook
+   ## Running Storybook
    To view your components in isolation via Storybook (usually available at http://localhost:6006):
    ```bash
    npm run storybook
    ```
-   ##Running Playwright Tests
+   ## Running Playwright Tests
    Make sure Storybook is running, then run the Playwright tests with:
    ```bash
    npx playwright test
