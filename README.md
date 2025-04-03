@@ -4,6 +4,7 @@ A Next.js project using Tailwind CSS, Storybook, and Playwright to showcase Pok√
 
 ## Prerequisites
 
+- [Next.js](https://nextjs.org/) version 15
 - [Node.js](https://nodejs.org/) (v14 or later)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
