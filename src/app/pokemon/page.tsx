@@ -1,11 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import {
-  Pokemon,
-  PokemonAPIResponse,
-  //   PokemonSprite,
-  PokemonType,
-} from "../types";
+import { Pokemon, PokemonAPIResponse, PokemonType } from "../types";
 import SearchBar from "../components/SearchBar";
 import PokemonCard from "../components/PokemonCard";
 
@@ -101,8 +96,7 @@ export default function Home() {
   );
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">Pokémon Explorer</h1>
+    <div className="container mx-auto py-40">
       <SearchBar
         value={search}
         onChange={(e) => setSearch(e.target.value)}
