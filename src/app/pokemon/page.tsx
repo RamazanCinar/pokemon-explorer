@@ -1,31 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
+import {
+  Pokemon,
+  PokemonAPIResponse,
+  //   PokemonSprite,
+  PokemonType,
+} from "../types";
 import SearchBar from "../components/SearchBar";
 import PokemonCard from "../components/PokemonCard";
-
-interface Pokemon {
-  id: number;
-  name: string;
-  image: string;
-  types: string[];
-}
-
-interface PokemonSprite {
-  sprites: string;
-}
-
-interface PokemonType {
-  pokemon_v2_type: {
-    name: string;
-  };
-}
-
-interface PokemonAPIResponse {
-  id: number;
-  name: string;
-  pokemon_v2_pokemonsprites: PokemonSprite[];
-  pokemon_v2_pokemontypes: PokemonType[];
-}
 
 export default function Home() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);

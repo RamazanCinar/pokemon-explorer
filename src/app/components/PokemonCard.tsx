@@ -1,13 +1,6 @@
 import Image from "next/image";
 
-export interface PokemonCardProps {
-  id: number;
-  name: string;
-  image: string;
-  type: string;
-  isFavorite: boolean;
-  toggleFavorite: () => void;
-}
+import { PokemonCardProps } from "../types";
 
 const PokemonCard: React.FC<PokemonCardProps> = ({
   id,

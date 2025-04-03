@@ -1,13 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import PokemonCard from "../components/PokemonCard";
-
-interface Pokemon {
-  id: number;
-  name: string;
-  image: string;
-  types: string[];
-}
+import { Pokemon } from "../types";
 
 export default function Favorites() {
   const [favorites, setFavorites] = useState<Pokemon[]>([]);
